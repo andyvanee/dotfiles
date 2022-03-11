@@ -11,8 +11,7 @@ echo "<body style='background-color: #333; color: #DDD;'>" >> $fout
 echo "<pre style='width: 800px; margin:0 auto; font-family: \"Andale Mono\", monospace;'>" >> $fout
 
 # col -b does some magic... I forget what.
-man $1 | col -b | php -R 'echo htmlspecialchars($argn)."\n";' >> $fout
-
+man $1 | col -b | escape_html >> $fout
 echo "</pre></body></html>" >> $fout
 
 open $fout
