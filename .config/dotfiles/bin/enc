@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# encode a file using a passphrase, see `dec` for decoder
+# eg:
+#    enc infile outfile
+read -s -p "Type your passphrase: " PASS
+openssl enc -des-cbc  -k "$PASS" -iv 0 -in $1 -out $2

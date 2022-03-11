@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Print your shell colors
+
+echo ''
+echo -e "\033[0mThis is a demo of the default color (No color)"
+echo -e "\033[1;37mThis is a demo of the color White  \t\033[0;30mThis is a demo of the color Black"
+echo -e "\033[0;34mThis is a demo of the color Blue   \t\033[1;34mThis is a demo of the color Light Blue"
+echo -e "\033[0;32mThis is a demo of the color Green  \t\033[1;32mThis is a demo of the color Light Green"
+echo -e "\033[0;36mThis is a demo of the color Cyan   \t\033[1;36mThis is a demo of the color Light Cyan"
+echo -e "\033[0;31mThis is a demo of the color Red    \t\033[1;31mThis is a demo of the color Light Red"
+echo -e "\033[0;35mThis is a demo of the color Purple \t\033[1;35mThis is a demo of the color Light Purple"
+echo -e "\033[0;33mThis is a demo of the color Yellow \t\033[1;33mThis is a demo of the color Light Yellow"
+echo -e "\033[1;30mThis is a demo of the color Gray   \t\033[0;37mThis is a demo of the color Light Gray"

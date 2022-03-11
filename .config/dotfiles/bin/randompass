@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+PASS=$(openssl rand 60 | openssl base64 -A | tr -dc A-Za-z0-9 | head -c36)
+echo -n $PASS | pbcopy
+echo $PASS

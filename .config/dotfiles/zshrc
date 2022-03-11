@@ -1,0 +1,37 @@
+export LANG=en_US.UTF-8
+export HISTSIZE=20000
+export HISTFILE="$HOME/.history"
+export SAVEHIST=$HISTSIZE
+setopt hist_ignore_all_dups
+setopt hist_ignore_space
+
+# ls with directory listing
+autoload -U add-zsh-hook
+add-zsh-hook -Uz chpwd (){ ls -ltG | head -n 10; }
+
+# characters to ignore for delete word
+WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
+
+PATH="$PATH:./node_modules/.bin"
+PATH="$PATH:$HOME/.config/dotfiles/bin"
+
+# Aliases
+alias now='date "+%Y-%m-%d-%H%M" | pbcopy; pbpaste'
+
+# Functions
+
+github() {
+  open  $(git config remote.origin.url | sed "s/git@\(.*\):\(.*\)/https:\/\/\1\/\2/" | sed "s/\.git//")/tree/$(git symbolic-ref --quiet --short HEAD )/$(git rev-parse --show-prefix)
+}
+
+ip() {
+  curl -s http://httpbin.org/ip | grep origin | cut -f4 -d\" -
+}
+
+# External shell configs
+
+[[ -f /opt/dev/sh/chruby/chruby.sh ]] && type chruby >/dev/null 2>&1 || chruby () { source /opt/dev/sh/chruby/chruby.sh; chruby "$@"; }
+
+[[ -x /opt/homebrew/bin/brew ]] && eval $(/opt/homebrew/bin/brew shellenv)
+
+[ -f /opt/dev/dev.sh ] && source /opt/dev/dev.sh
