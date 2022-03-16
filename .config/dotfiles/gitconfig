@@ -12,3 +12,5 @@
 	required = true
 [include]
 	path = ~/.config/dotfiles/gitconfig_local
+[alias]
+	co = checkout
