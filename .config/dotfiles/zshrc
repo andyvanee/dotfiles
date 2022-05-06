@@ -11,6 +11,7 @@ add-zsh-hook -Uz chpwd (){ ls -ltG | head -n 10; }
 
 # characters to ignore for delete word
 WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
+PROMPT=$'%F{green}\n%T %~ %B%b%F{reset}\n$ '
 
 PATH="$PATH:./node_modules/.bin"
 PATH="$PATH:$HOME/.config/dotfiles/bin"
