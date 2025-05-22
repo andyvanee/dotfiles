@@ -1,38 +1,40 @@
+# zshrc mainly focused on Mac + default Terminal
+
+# Prompt
+PROMPT=$'%F{green}\n%T %~ %B%b%F{reset}\n$ '
+
+# Shell history config
 export LANG=en_US.UTF-8
-export HISTSIZE=20000
+export HISTSIZE=50000
 export HISTFILE="$HOME/.history"
 export SAVEHIST=$HISTSIZE
 setopt hist_ignore_all_dups
 setopt hist_ignore_space
 
-# ls with directory listing
+# characters to ignore for delete word
+WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
+
+# hook ls to output automatic directory listing
 autoload -U add-zsh-hook
 add-zsh-hook -Uz chpwd (){ ls -ltG | head -n 10; }
 
-# characters to ignore for delete word
-WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
-PROMPT=$'%F{green}\n%T %~ %B%b%F{reset}\n$ '
-
-PATH="$PATH:./node_modules/.bin"
-PATH="$PATH:$HOME/.config/dotfiles/bin"
-
-# Aliases
+# the current date/time in ISO8601 format
 alias now='date "+%Y-%m-%d-%H%M" | pbcopy; pbpaste'
 
-# Functions
-
+# open repo in github
 github() {
-  open  $(git config remote.origin.url | sed "s/git@\(.*\):\(.*\)/https:\/\/\1\/\2/" | sed "s/\.git//")/tree/$(git symbolic-ref --quiet --short HEAD )/$(git rev-parse --show-prefix)
+  open $(git config remote.origin.url | sed "s/git@\(.*\):\(.*\)/https:\/\/\1\/\2/" | sed "s/\.git//")/tree/$(git symbolic-ref --quiet --short HEAD )/$(git rev-parse --show-prefix)
 }
 
+# what's my ip?
 ip() {
   curl -s http://httpbin.org/ip | grep origin | cut -f4 -d\" -
 }
 
+# Path config
+PATH="$PATH:./node_modules/.bin"
+PATH="$PATH:$HOME/.config/dotfiles/bin"
+
 # External shell configs
-
 [[ -f /opt/dev/sh/chruby/chruby.sh ]] && type chruby >/dev/null 2>&1 || chruby () { source /opt/dev/sh/chruby/chruby.sh; chruby "$@"; }
-
 [[ -x /opt/homebrew/bin/brew ]] && eval $(/opt/homebrew/bin/brew shellenv)
-
-[ -f /opt/dev/dev.sh ] && source /opt/dev/dev.sh
